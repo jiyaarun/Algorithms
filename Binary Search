@@ -1,0 +1,40 @@
+public class BinarySearch
+{
+        public static int binarysearch(int[] array, int answer,int start, int end)
+        {
+            
+        int index = -3;                  //the index of the number if found
+        int length = (end - start)+1;    //length of array section to search
+        int middle = start + length/2;   //middle of array
+
+        // if length is zero, or length is 1 but answer nnot equal, number not in list
+        if ((length==1 && array[middle]!= answer) || length==0)
+        {
+            index = -1;
+        }
+
+        // check if middle is the answer
+        else if (array[middle] == answer)
+        {
+            index = middle;
+        }
+
+        // check if middle is less than answer, look at top half of array
+        else if (array[middle] < answer)
+        { 
+            return binarysearch(array,answer,middle+1,end);  
+        }
+        else 
+        {
+            return binarysearch(array,answer,0,middle-1);
+        } 
+        return index;
+    }
+
+    public static void main(String[] args)
+    {
+        int[] array = {1,2,4,5,6};
+        System.out.println(binarysearch(array,3,0,5));        
+    }
+
+}
